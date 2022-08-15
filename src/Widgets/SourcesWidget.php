@@ -6,5 +6,5 @@ use Filament\Widgets\Widget;
 
 class SourcesWidget extends Widget
 {
-    // protected static string $view = 'filament-laravel-analytics::widgets.sources-widget';
+    protected static string $view = 'filament-laravel-analytics::widgets.sources-widget';
 }

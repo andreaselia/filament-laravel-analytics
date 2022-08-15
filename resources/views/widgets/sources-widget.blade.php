@@ -1,5 +1,5 @@
 <x-filament::widget>
     <x-filament::card>
-        {{-- Widget content --}}
+        List sources here
     </x-filament::card>
 </x-filament::widget>
