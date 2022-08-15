@@ -1,0 +1,42 @@
+{
+    "name": "andreaselia/filament-laravel-analytics",
+    "description": "A simplistics analytics viewer for your Filament dashboard.",
+    "keywords": [
+        "laravel",
+        "filament",
+        "filament-laravel-analytics"
+    ],
+    "homepage": "https://gitlab.com/andreaselia/filament-laravel-analytics",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Elia",
+            "email": "andreaselia@live.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "filament/filament": "^2.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "AndreasElia\\FilamentLaravelAnalytics\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AndreasElia\\FilamentLaravelAnalytics\\FilamentLaravelAnalyticsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
