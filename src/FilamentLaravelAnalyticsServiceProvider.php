@@ -8,11 +8,14 @@ use Spatie\LaravelPackageTools\Package;
 class FilamentLaravelAnalyticsServiceProvider extends PluginServiceProvider
 {
     protected array $widgets = [
-        Widgets\PageViewsWidget::class,
+        Widgets\PagesWidget::class,
+        // Widgets\SourcesWidget::class,
+        // Widgets\UsersWidget::class,
+        // Widgets\DevicesWidget::class,
     ];
 
     public function configurePackage(Package $package): void
     {
-        $package->name('filament-laravel-analytics')->hasViews();
+        $package->name('filament-laravel-analytics');
     }
 }
