@@ -4,10 +4,20 @@
             Pages
         </h2>
 
-        <div class="divide-y divide-dashed dark:divide-gray-700">
+        <div class="px-4 sm:px-6 py-3 flex justify-between bg-gray-50 border-t border-b border-gray-200 text-xs font-medium leading-4 tracking-wider text-gray-600 uppercase">
+            <div>Page</div>
+            <div>Users</div>
+        </div>
+
+        <div class="divide-y divide-gray-200 max-h-64 overflow-y-auto">
             @foreach ($items as $item)
-               <div class="px-4 py-3 filament-tables-text-column">
-                    @json($item)
+                <div class="px-4 sm:px-6 py-3 flex justify-between hover:bg-gray-50">
+                    <div class="pr-5 text-sm leading-5 text-gray-800 truncate">
+                        <a href="{{ $item->page }}" target="_blank" class="hover:underline">
+                            {{ $item->page }}
+                        </a>
+                    </div>
+                    <div class="text-sm leading-5 text-gray-600">{{ $item->users }}</div>
                 </div>
             @endforeach
         </div>
