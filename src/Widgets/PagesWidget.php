@@ -2,21 +2,26 @@
 
 namespace AndreasElia\FilamentLaravelAnalytics\Widgets;
 
+use AndreasElia\Analytics\Models\PageView;
+use AndreasElia\FilamentLaravelAnalytics\Traits\HasFilters;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\DB;
-use AndreasElia\Analytics\Models\PageView;
 
 class PagesWidget extends Widget
 {
-    protected static string $view = 'filament-laravel-analytics::widgets.pages-widget';
+    use HasFilters;
 
-    protected string $period = '30_days';
+    protected static string $view = 'filament-laravel-analytics::widgets.widget';
+    public static string $heading = 'Pages';
+    public static string $tableHeader = 'Page';
+    public string $field = 'page';
+    public string $filter = 'today';
 
     protected function getViewData(): array
     {
         return [
             'items' => PageView::query()
-                ->scopes(['filter' => [$this->period]])
+                ->scopes(['filter' => [$this->filter]])
                 ->select('uri as page', DB::raw('count(*) as users'))
                 ->groupBy('page')
                 ->get(),
