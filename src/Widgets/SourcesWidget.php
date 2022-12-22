@@ -21,11 +21,11 @@ class SourcesWidget extends Widget
     {
         return [
             'items' => PageView::query()
-                               ->scopes(['filter' => [$this->filter]])
-                ->select('source as page', DB::raw('count(*) as users'))
-                ->whereNotNull('source')
-                ->groupBy('source')
-                ->get(),
+                                ->scopes(['filter' => [$this->filter]])
+                                ->select('source as page', DB::raw('count(*) as users'))
+                                ->whereNotNull('source')
+                                ->groupBy('source')
+                                ->get(),
         ];
     }
 }

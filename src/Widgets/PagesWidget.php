@@ -21,10 +21,10 @@ class PagesWidget extends Widget
     {
         return [
             'items' => PageView::query()
-                ->scopes(['filter' => [$this->filter]])
-                ->select('uri as page', DB::raw('count(*) as users'))
-                ->groupBy('page')
-                ->get(),
+                                ->scopes(['filter' => [$this->filter]])
+                                ->select('uri as page', DB::raw('count(*) as users'))
+                                ->groupBy('page')
+                                ->get(),
         ];
     }
 }
