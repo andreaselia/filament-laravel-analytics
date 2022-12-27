@@ -4,11 +4,11 @@
             @php
                 $heading = $card->getLabel();
                 $filters = $this->getFilters();
-                $data = $card->getValue()
+                $data = $card->getValue();
             @endphp
 
             <x-filament::card>
-                @if($heading || $filters)
+                @if ($heading || $filters)
                     <div class="flex items-center justify-between gap-8">
                         @if ($heading)
                             <x-filament::card.heading>
@@ -36,8 +36,7 @@
                 @endif
 
                 <div>
-                    <div class="px-4 sm:px-6 py-2 flex justify-between rounded-md text-xs font-medium leading-4 tracking-wider
-                    uppercase text-white bg-primary-500">
+                    <div class="px-4 sm:px-6 py-2 flex justify-between rounded-md text-xs font-medium leading-4 tracking-wider uppercase text-white bg-primary-500">
                         @foreach ($data['heading'] as $heading)
                             <div>{{ __($heading) }}</div>
                         @endforeach
