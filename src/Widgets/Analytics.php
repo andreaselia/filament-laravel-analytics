@@ -37,50 +37,54 @@ class Analytics extends StatsOverviewWidget
         return [
             Card::make(
                 __('Devices'),
-                ['items' => PageView::query()
-                                    ->scopes(['filter' => [$this->filter]])
-                                    ->select('device as type', DB::raw('count(*) as users'))
-                                    ->groupBy('type')
-                                    ->get(),
-                 'field' => 'type',
-                 'heading' => [__('Type'), __('Users')],
+                [
+                    'items' => PageView::query()
+                        ->scopes(['filter' => [$this->filter]])
+                        ->select('device as type', DB::raw('count(*) as users'))
+                        ->groupBy('type')
+                        ->get(),
+                    'field' => 'type',
+                    'heading' => [__('Type'), __('Users')],
                 ]
             ),
 
             Card::make(
                 __('Users'),
-                ['items' => PageView::query()
-                                    ->scopes(['filter' => [$this->filter]])
-                                    ->select('country', DB::raw('count(*) as users'))
-                                    ->groupBy('country')
-                                    ->get(),
-                 'field' => 'country',
-                 'heading' => [__('Country'), __('Users')],
+                [
+                    'items' => PageView::query()
+                        ->scopes(['filter' => [$this->filter]])
+                        ->select('country', DB::raw('count(*) as users'))
+                        ->groupBy('country')
+                        ->get(),
+                     'field' => 'country',
+                     'heading' => [__('Country'), __('Users')],
                 ]
             ),
 
             Card::make(
                 __('Pages'),
-                ['items' => PageView::query()
-                                    ->scopes(['filter' => [$this->filter]])
-                                    ->select('uri as page', DB::raw('count(*) as users'))
-                                    ->groupBy('page')
-                                    ->get(),
-                 'field' => 'page',
-                 'heading' => [__('Page'), __('Users')],
+                [
+                    'items' => PageView::query()
+                        ->scopes(['filter' => [$this->filter]])
+                        ->select('uri as page', DB::raw('count(*) as users'))
+                        ->groupBy('page')
+                        ->get(),
+                     'field' => 'page',
+                     'heading' => [__('Page'), __('Users')],
                 ]
             ),
 
             Card::make(
                 __('Sources'),
-                ['items' => PageView::query()
-                                    ->scopes(['filter' => [$this->filter]])
-                                    ->select('source as page', DB::raw('count(*) as users'))
-                                    ->whereNotNull('source')
-                                    ->groupBy('source')
-                                    ->get(),
-                 'field' => 'page',
-                 'heading' => [__('Page'), __('Users')],
+                [
+                    'items' => PageView::query()
+                        ->scopes(['filter' => [$this->filter]])
+                        ->select('source as page', DB::raw('count(*) as users'))
+                        ->whereNotNull('source')
+                        ->groupBy('source')
+                        ->get(),
+                     'field' => 'page',
+                     'heading' => [__('Page'), __('Users')],
                 ]
             ),
         ];
