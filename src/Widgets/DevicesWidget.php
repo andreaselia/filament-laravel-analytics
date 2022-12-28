@@ -2,24 +2,29 @@
 
 namespace AndreasElia\FilamentLaravelAnalytics\Widgets;
 
+use AndreasElia\Analytics\Models\PageView;
+use AndreasElia\FilamentLaravelAnalytics\Traits\HasFilters;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\DB;
-use AndreasElia\Analytics\Models\PageView;
 
 class DevicesWidget extends Widget
 {
-    protected static string $view = 'filament-laravel-analytics::widgets.devices-widget';
+    use HasFilters;
 
-    protected string $period = '30_days';
+    protected static string $view = 'filament-laravel-analytics::widgets.widget';
+    public static string $heading = 'Devices';
+    public static string $tableHeader = 'Type';
+    public string $field = 'type';
+    public string $filter = 'today';
 
     protected function getViewData(): array
     {
         return [
             'items' => PageView::query()
-                ->scopes(['filter' => [$this->period]])
-                ->select('device as type', DB::raw('count(*) as users'))
-                ->groupBy('type')
-                ->get(),
+                               ->scopes(['filter' => [$this->filter]])
+                               ->select('device as type', DB::raw('count(*) as users'))
+                               ->groupBy('type')
+                               ->get(),
         ];
     }
 }

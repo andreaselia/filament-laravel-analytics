@@ -2,24 +2,29 @@
 
 namespace AndreasElia\FilamentLaravelAnalytics\Widgets;
 
+use AndreasElia\Analytics\Models\PageView;
+use AndreasElia\FilamentLaravelAnalytics\Traits\HasFilters;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\DB;
-use AndreasElia\Analytics\Models\PageView;
 
 class UsersWidget extends Widget
 {
-    protected static string $view = 'filament-laravel-analytics::widgets.users-widget';
+    use HasFilters;
 
-    protected string $period = '30_days';
+    protected static string $view = 'filament-laravel-analytics::widgets.widget';
+    public static string $heading = 'Users';
+    public static string $tableHeader = 'Country';
+    public string $field = 'country';
+    public string $filter = 'today';
 
     protected function getViewData(): array
     {
         return [
             'items' => PageView::query()
-                ->scopes(['filter' => [$this->period]])
-                ->select('country', DB::raw('count(*) as users'))
-                ->groupBy('country')
-                ->get(),
+                               ->scopes(['filter' => [$this->filter]])
+                               ->select('country', DB::raw('count(*) as users'))
+                               ->groupBy('country')
+                               ->get(),
         ];
     }
 }

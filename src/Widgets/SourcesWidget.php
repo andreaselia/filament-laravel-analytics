@@ -2,25 +2,30 @@
 
 namespace AndreasElia\FilamentLaravelAnalytics\Widgets;
 
+use AndreasElia\Analytics\Models\PageView;
+use AndreasElia\FilamentLaravelAnalytics\Traits\HasFilters;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\DB;
-use AndreasElia\Analytics\Models\PageView;
 
 class SourcesWidget extends Widget
 {
-    protected static string $view = 'filament-laravel-analytics::widgets.sources-widget';
+    use HasFilters;
 
-    protected string $period = '30_days';
+    protected static string $view = 'filament-laravel-analytics::widgets.widget';
+    public static string $heading = 'Sources';
+    public static string $tableHeader = 'Page';
+    public string $field = 'page';
+    public string $filter = 'today';
 
     protected function getViewData(): array
     {
         return [
             'items' => PageView::query()
-                ->scopes(['filter' => [$this->period]])
-                ->select('source as page', DB::raw('count(*) as users'))
-                ->whereNotNull('source')
-                ->groupBy('source')
-                ->get(),
+                                ->scopes(['filter' => [$this->filter]])
+                                ->select('source as page', DB::raw('count(*) as users'))
+                                ->whereNotNull('source')
+                                ->groupBy('source')
+                                ->get(),
         ];
     }
 }
