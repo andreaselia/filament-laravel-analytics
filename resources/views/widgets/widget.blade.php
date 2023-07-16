@@ -10,7 +10,7 @@
             <div class="flex items-center justify-between gap-8">
                 @if ($heading)
                     <x-filament::card.heading>
-                        {{ __($heading) }}
+                        {{ config('analytics.translations.'.strtolower($heading), $heading) }}
                     </x-filament::card.heading>
                 @endif
 
